@@ -1,0 +1,14 @@
+{
+  "name": "ahh30",
+  "version": "1.0.0",
+  "description": "Assignment",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Spaceship"
+  ],
+  "author": "Anton H. Heimdal",
+  "license": "UNLICENSED"
+}
