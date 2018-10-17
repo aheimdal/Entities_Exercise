@@ -36,6 +36,7 @@ Bullet.prototype.lifeSpan = 3 * SECS_TO_NOMINALS;
 Bullet.prototype.update = function (du) {
     
     // TODO: Implement this
+    this.Bullet.update(du);
 
     // NB: Remember to handle screen-wrapping... and "death"
 };

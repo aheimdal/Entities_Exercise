@@ -1,14 +1,25 @@
 {
   "name": "ahh30",
   "version": "1.0.0",
-  "description": "Assignment",
+  "description": "Entities",
   "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "Yes please"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aheimdal/Entities_Exercise.git"
   },
   "keywords": [
-    "Spaceship"
+    "Spacehipt",
+    "asteroids"
   ],
   "author": "Anton H. Heimdal",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/aheimdal/Entities_Exercise/issues"
+  },
+  "homepage": "https://github.com/aheimdal/Entities_Exercise#readme"
 }

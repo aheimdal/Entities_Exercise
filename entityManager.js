@@ -40,6 +40,10 @@ _generateRocks : function() {
 	NUM_ROCKS = 4;
 
     // TODO: Make `NUM_ROCKS` Rocks!
+    for(i = 0; i < NUM_ROCKS; i++){
+        var steinar = new Rock();
+        this._rocks.push(steinar);
+    }
 },
 
 _findNearestShip : function(posX, posY) {
@@ -90,6 +94,8 @@ fireBullet: function(cx, cy, velX, velY, rotation) {
 
 generateShip : function(descr) {
     // TODO: Implement this
+    let tieFighter = new Ship();
+    this._ships.push(tieFighter);
 },
 
 killNearestShip : function(xPos, yPos) {
@@ -119,6 +125,11 @@ toggleRocks: function() {
 update: function(du) {
 
     // TODO: Implement this
+    for(var i = 0; i < this._rocks.length; i++){
+        this._rocks[i].update(du);
+    }
+
+    this._ships[0].update(du);
 
     // NB: Remember to handle the "KILL_ME_NOW" return value!
     //     and to properly update the array in that case.
@@ -128,6 +139,11 @@ render: function(ctx) {
 
     // TODO: Implement this
 
+    for(var i = 0; i < this._rocks.length; i++){
+        this._rocks[i].render(ctx);
+    }
+
+    this._ships[0].render(ctx);
     // NB: Remember to implement the ._bShowRocks toggle!
     // (Either here, or if you prefer, in the Rock objects)
 
