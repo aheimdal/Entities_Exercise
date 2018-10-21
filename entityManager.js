@@ -41,18 +41,42 @@ _generateRocks : function() {
 
     // TODO: Make `NUM_ROCKS` Rocks!
     for(i = 0; i < NUM_ROCKS; i++){
-        var steinar = new Rock();
-        this._rocks.push(steinar);
+        var g_rocks = new Rock();
+        this._rocks.push(g_rocks);
     }
 },
 
 _findNearestShip : function(posX, posY) {
 
     // TODO: Implement this
-
+    
     // NB: Use this technique to let you return "multiple values"
     //     from a function. It's pretty useful!
     //
+    
+        var distance = 0;
+        var edgeDistance = 0;
+        var myFinal;
+        //  OVERKILL
+        var maxDistance = Number.MAX_SAFE_INTEGER;
+        var closestShip,
+            closestIndex;
+        this._ships.forEach(ship => {
+            edgeDistance = util.wrappedDistSq(posX,posY,ship.cx,ship.cy);
+            distance = util.distSq(posX,posY,ship.cx,ship.cy);
+            if(edgeDistance > distance){
+                myFinal = distance;
+            } else{
+                myFinal = edgeDistance;
+            }
+            if(myFinal <= maxDistance){
+                maxDistance = myFinal;
+                closestShip = ship;
+                closestIndex = closestShip.indexOf;
+            }
+        });
+
+
     return {
 	theShip : closestShip,   // the object itself
 	theIndex: closestIndex   // the array index where it lives
@@ -87,26 +111,40 @@ init: function() {
 },
 
 fireBullet: function(cx, cy, velX, velY, rotation) {
-
+    var fireLaser = new Bullet({
+        cx,
+        cy,
+        velX,
+        velY,
+        rotation
+    });
+    this._bullets.push(fireLaser);   
     // TODO: Implement this
 
 },
 
 generateShip : function(descr) {
     // TODO: Implement this
-    let tieFighter = new Ship();
+    let tieFighter = new Ship({
+        cx : descr.cx,
+        cy : descr.cy
+    });
     this._ships.push(tieFighter);
 },
 
 killNearestShip : function(xPos, yPos) {
     // TODO: Implement this
-
+    
+    var nearestShip = this._findNearestShip(xPos,yPos);
+    this._ships.splice(nearestShip.theIndex,1);
+    
     // NB: Don't forget the "edge cases"
 },
 
 yoinkNearestShip : function(xPos, yPos) {
     // TODO: Implement this
-
+    var nearestShip = this._findNearestShip(xPos,yPos);
+    nearestShip.theShip.setPos(xPos,yPos);
     // NB: Don't forget the "edge cases"
 },
 
@@ -131,6 +169,9 @@ update: function(du) {
 
     this._ships[0].update(du);
 
+    for(var i = 0; i < this._bullets.length; i++){
+        this._bullets[i].update(du);
+    }
     // NB: Remember to handle the "KILL_ME_NOW" return value!
     //     and to properly update the array in that case.
 },
@@ -143,7 +184,14 @@ render: function(ctx) {
         this._rocks[i].render(ctx);
     }
 
-    this._ships[0].render(ctx);
+    for(var i = 0; i < this._ships.length; i++){
+        this._ships[i].render(ctx);
+    }
+
+    for(var i = 0; i < this._bullets.length; i++){
+        this._bullets[i].render(ctx);
+
+    }
     // NB: Remember to implement the ._bShowRocks toggle!
     // (Either here, or if you prefer, in the Rock objects)
 

@@ -173,7 +173,7 @@ var g_images = {};
 function requestPreloads() {
 
     var requiredImages = {
-	ship   : "https://banner2.kisspng.com/20180407/rve/kisspng-millennium-falcon-star-wars-han-solo-drawing-r2d2-5ac871b90ef2a8.0865205315230857530612.jpg",
+	ship   : "https://notendur.hi.is/~pk/308G/images/ship.png",
 	rock   : "https://notendur.hi.is/~pk/308G/images/rock.png"
     };
 
